@@ -1,0 +1,39 @@
+﻿@model Category
+<form method="post">
+    <div class="border border-rounded p-3 mt-4">
+        <div class="row pb-2">
+            <h2>Create Category</h2>
+            <hr>
+        </div>
+        @* Show all valid form *@
+        @* <div asp-validation-summary="ModelOnly"></div> *@
+
+        @* asp-for được ánh xạ từ thuộc tính models *@
+        <div class="mb-3">
+            <label asp-for="Name" class="form-lable"></label>
+            <input asp-for="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span> @* như flash("") *@
+        </div>
+        <div class="mb-3">
+            <label asp-for="DisplayOrder" class="form-lable"></label>
+            <input asp-for="DisplayOrder" class="form-control">
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span> @* như flash("") *@
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button type="submit" class="btn btn-success form-control" style="width: 150px;">Create</button>
+            </div>
+            <div class="col-6">
+                <a asp-controller="Categories" asp-action="Index" class="btn btn-secondary" style="width: 150px;">Back
+                    to Category</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+}

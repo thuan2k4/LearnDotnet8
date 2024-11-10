@@ -1,0 +1,51 @@
+﻿@model List<Category>
+
+@* Dung file chua cac thong bao co tne la _Notification *@
+<partial name="_Notification" />
+
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-8">
+            <h1 class="fw-bold text-primary">Category List</h1>
+        </div>
+        <div class="col">
+            <a asp-controller="Categories" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Category
+            </a>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>DisplayOrder</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @* dùng lambda của OrderBy() để sắp xếp theo dữ kiện *@
+        @foreach (var data in Model.OrderBy(data => data.Name))
+        {
+            <tr>
+                <td class="col-6">@data.Name</td>
+                <td>@data.DisplayOrder</td>
+                <td class=" d-flex justify-content-center">
+                    <div class="w-75 btn-group" role="group">
+                        @* asp-route-{...} chuyển url thành param chứa dữ kiện cần thiết *@
+                        <a asp-controller="Categories" asp-action="Edit" asp-route-id="@data.Id" class="btn btn-primary ">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        @* Thực hiện theo controller Đến razor Delete có id theo asp-router-id *@
+                        <form asp-controller="Categories" asp-action="Delete" asp-route-id="@data.Id" method="post"
+                            class="d-inline">
+                            <button type="submit" class="btn btn-delete">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

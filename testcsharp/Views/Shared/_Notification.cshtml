@@ -1,0 +1,9 @@
+﻿@* Neu ton tai thong bao tuong ung thi hien thi ra *@
+@if (TempData["success"] != null)
+{
+    <h3>@TempData["success"]</h3>
+}
+@if (TempData["error"] != null)
+{
+    <h3>@TempData["error"]</h3>
+}
